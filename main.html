@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Strzelnica Drugnia Academy Green Point</title>
+  <meta name="description" content="Strzelnica Drugnia Academy Green Point – bezpieczne strzelanie, osie, arsenal, szkolenia i wydarzenia." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #151923;
+      --muted: #8a93a5;
+      --fg: #e8ecf3;
+      --accent: #5ac8fa;
+      --accent-2: #8aff80;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, #0f1115 0%, #0c0e12 100%);
+      color: var(--fg);
+    }
+    a { color: inherit; text-decoration: none }
+    .container { width: min(1100px, 92%); margin: 0 auto }
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: rgba(10,12,16,.6); border-bottom: 1px solid rgba(90,200,250,.15);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0 }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+    .brand img { width: 36px; height:36px; border-radius: 10px; box-shadow: var(--shadow) }
+    .brand span { font-size: 18px }
+    .menu { display:flex; align-items:center; gap: 18px }
+    .menu a { padding: 8px 12px; border-radius: 10px; color: var(--muted) }
+    .menu a:hover, .menu a.active { color: var(--fg); background: rgba(90,200,250,.12) }
+    .hero { padding: 72px 0 40px }
+    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap: 26px }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow) }
+    .hero .card { padding: 28px }
+    .pill { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius: 999px; font-size: 12px; color: var(--muted);
+            background: rgba(138,147,165,.12); border:1px solid rgba(255,255,255,.06) }
+    h1 { font-size: clamp(26px, 4vw, 42px); margin: 14px 0 10px }
+    p { color: var(--muted); line-height: 1.7 }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px }
+    .grid-2 { display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px }
+    .section { padding: 56px 0 }
+    h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 16px }
+    .kpi { display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 18px }
+    .kpi .card { padding: 16px; text-align:center }
+    .kpi h3 { margin:0; font-size: 24px }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 10px; border:1px solid rgba(255,255,255,.1);
+           background: rgba(255,255,255,.04); color: var(--fg); cursor:pointer }
+    .btn:hover { background: rgba(255,255,255,.08) }
+    .map-wrap { overflow:hidden; border-radius: var(--radius); border:1px solid rgba(255,255,255,.08) }
+    iframe.map { width: 100%; height: 360px; display:block }
+
+    /* OSIE */
+    .lane { padding: 18px; display:flex; gap: 16px; align-items:center }
+    .lane .tag { font-size:12px; color:var(--muted) }
+    .lane h3 { margin: 4px 0 }
+
+    /* ARSENAL */
+    .arsenal-item { padding:16px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed rgba(255,255,255,.06) }
+    .arsenal-item:last-child { border-bottom: none }
+
+    /* GALERIA */
+    .gallery { display:grid; grid-template-columns: repeat(2,1fr); gap: 10px }
+    .gallery img { width:100%; height:240px; object-fit: cover; border-radius: 12px; border:1px solid rgba(255,255,255,.06) }
+
+    /* KONTAKT */
+    form { display:grid; gap:10px }
+    input, textarea { width:100%; padding:12px 14px; background:#0c0f14; border:1px solid rgba(255,255,255,.12); color:var(--fg); border-radius: 10px }
+    textarea { min-height: 120px; resize: vertical }
+
+    footer { padding: 32px 0; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06) }
+
+    /* Mobile */
+    .burger { display: none }
+    @media (max-width: 900px){
+      .hero-grid, .grid-3, .grid-2, .kpi { grid-template-columns: 1fr }
+      .gallery { grid-template-columns: 1fr }
+    }
+    @media (max-width: 760px){
+      .menu { display:none }
+      .burger { display:inline-flex; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1) }
+      .mobile-menu { display:none; position: absolute; left:0; right:0; top:60px; background:#0c0f14; border-bottom:1px solid rgba(255,255,255,.08) }
+      .mobile-menu a { display:block; padding:12px 20px; border-top:1px solid rgba(255,255,255,.06); color:var(--muted) }
+      .mobile-menu a:hover { background: rgba(255,255,255,.04) }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER: logo + nazwa w kazdym miejscu -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#start" aria-label="Strona glowna">
+        <img src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0%' stop-color='%235ac8fa'/><stop offset='100%' stop-color='%238aff80'/></linearGradient></defs><rect rx='28' ry='28' width='200' height='200' fill='%2313181f'/><g transform='translate(28,28)'><circle cx='72' cy='72' r='70' fill='none' stroke='url(%23g)' stroke-width='12'/><rect x='58' y='10' width='28' height='124' rx='6' fill='url(%23g)'/><rect x='10' y='58' width='124' height='28' rx='6' fill='url(%23g)'/></g></svg>" alt="Logo" />
+        <span>Strzelnica Drugnia Academy Green Point</span>
+      </a>
+      <nav class="menu" aria-label="Glowne menu">
+        <a href="#start" class="active">Start</a>
+        <a href="#osie">Osie</a>
+        <a href="#arsenal">Arsenał</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <button class="burger" aria-label="Menu" onclick="toggleMenu()">☰</button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu container">
+      <a href="#start" onclick="toggleMenu(false)">Start</a>
+      <a href="#osie" onclick="toggleMenu(false)">Osie</a>
+      <a href="#arsenal" onclick="toggleMenu(false)">Arsenal</a>
+      <a href="#galeria" onclick="toggleMenu(false)">Galeria</a>
+      <a href="#kontakt" onclick="toggleMenu(false)">Kontakt</a>
+    </div>
+  </header>
+
+  <!-- START -->
+  <main id="start" class="hero container">
+    <div class="hero-grid">
+      <section class="card">
+        <span class="pill">Witamy na strzelnicy</span>
+        <h1>Bezpieczenstwo, precyzja i frajda ze strzelania</h1>
+        <p>
+          Strzelnica Drugnia Academy Green Point to nowoczesny obiekt dostepny dla poczatkujacych i zaawansowanych. Oferujemy
+          osie dla broni krotkiej i dlugiej, profesjonalny nadzor prowadzacych strzelanie oraz wypozyczalnie broni.
+        </p>
+        <div class="kpi">
+          <div class="card"><h3>17</h3><div class="tag">osi</div></div>
+          <div class="card"><h3>300 m</h3><div class="tag">max dystans</div></div>
+          <div class="card"><h3>30+</h3><div class="tag">jednostek w arsenale</div></div>
+          <div class="card"><h3>7/7</h3><div class="tag">czynne</div></div>
+        </div>
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap: wrap">
+          <a class="btn" href="#osie">Zobacz osie</a>
+          <a class="btn" href="#arsenal">Sprawdz arsenal</a>
+        </div>
+      </section>
+      <aside class="card">
+        <h2 style="margin-top:0">Lokalizacja</h2>
+        <p><strong>Nazwa:</strong> Strzelnica Drugnia Academy Green Point<br/>
+           <strong>Adres:</strong> 26-015 Drugnia</p>
+        <div class="map-wrap">
+          <iframe class="map" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2529.991237956879!2d20.8551995777103!3d50.64585387163012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4717f143ff5594f9%3A0xb27d47f3a0d6e93!2sStrzelnica%20Drugnia%20Academy%20Green%20Point!5e0!3m2!1spl!2spl!4v1757267566013!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade""></iframe>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- OSIE -->
+  <section id="osie" class="section">
+    <div class="container">
+      <h2>Osie</h2>
+      <div class="card">
+        <div class="lane">
+          <div>
+            <h3>Oś 25 m – Bron krotka</h3>
+            <div class="tag">5 stanowisk, tarcze papierowe, gongi</div>
+          </div>
+          <span class="pill" style="margin-left:auto">Dostepna</span>
+        </div>
+        <div class="lane">
+          <div>
+            <h3>Oś 50 m – PCC / karabin</h3>
+            <div class="tag">4 stanowiska, tarcze, gongi</div>
+          </div>
+          <span class="pill" style="margin-left:auto">Dostepna</span>
+        </div>
+        <div class="lane">
+          <div>
+            <h3>Oś 100 m – karabin</h3>
+            <div class="tag">3 stanowiska, stabilne stoly strzeleckie</div>
+          </div>
+          <span class="pill" style="margin-left:auto">Rezerwacja</span>
+        </div>
+              <div class="lane">
+          <div>
+            <h3>Oś 300 m – karabin snajperski</h3>
+            <div class="tag">3 stanowiska, stabilne stoly strzeleckie</div>
+          </div>
+          <span class="pill" style="margin-left:auto">Rezerwacja</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARSENAL -->
+  <section id="arsenal" class="section">
+    <div class="container">
+      <h2>Arsenal</h2>
+      <div class="card">
+        <div class="arsenal-item"><span>Glock 17 (9x19)</span><span>Bron krotka</span></div>
+        <div class="arsenal-item"><span>Beretta 92FS (9x19)</span><span>Bron krotka</span></div>
+        <div class="arsenal-item"><span>AR-15 (.223 Rem)</span><span>Karabin</span></div>
+        <div class="arsenal-item"><span>AKM (7.62x39)</span><span>Karabin</span></div>
+        <div class="arsenal-item"><span>Ruger 10/22 (.22 LR)</span><span>Karabin</span></div>
+        <div class="arsenal-item"><span>Mossberg 500 (12 GA)</span><span>Strzelba</span></div>
+      </div>
+      <p style="margin-top:10px" class="tag">Lista pogladowa – mozliwosc rozbudowy o zdjecia, parametry i cennik.</p>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="section">
+    <div class="container">
+      <h2>Galeria</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1542803653-98f2f0bc9b9a?q=80&w=1200&auto=format&fit=crop" alt="Strzelnica – hala" />
+        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop" alt="Stanowisko strzeleckie" />
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="Bron krotka" />
+        <img src="https://images.unsplash.com/photo-1556227624-504f0f0c23cc?q=80&w=1200&auto=format&fit=crop" alt="Karabin na osi" />
+      </div>
+      <p class="tag" style="margin-top:10px">Zdjecia pogladowe – podmien na wlasne URL lub pliki.</p>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <div class="grid-2">
+        <div class="card" style="padding:18px">
+          <form onsubmit="event.preventDefault(); alert('Dziekujemy! Skontaktujemy sie wkrotce.'); this.reset();">
+            <input type="text" name="name" placeholder="Imie i nazwisko" required />
+            <input type="email" name="email" placeholder="E-mail" required />
+            <input type="tel" name="phone" placeholder="Telefon" />
+            <textarea name="message" placeholder="Wiadomosc" required></textarea>
+            <button class="btn" type="submit">Wyslij wiadomosc</button>
+          </form>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3>Dane kontaktowe</h3>
+          <p><strong>Adres:</strong> 26-015 Drugnia<br/>
+             <strong>Telefon:</strong> +48 600 000 000<br/>
+             <strong>E-mail:</strong> kontakt@strzelnicaxyz.pl</p>
+          <div class="map-wrap">
+            <iframe class="map" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2529.991237956879!2d20.8551995777103!3d50.64585387163012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4717f143ff5594f9%3A0xb27d47f3a0d6e93!2sStrzelnica%20Drugnia%20Academy%20Green%20Point!5e0!3m2!1spl!2spl!4v1757267566013!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+        <div class="brand">
+          <img src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0%' stop-color='%235ac8fa'/><stop offset='100%' stop-color='%238aff80'/></linearGradient></defs><rect rx='28' ry='28' width='200' height='200' fill='%2313181f'/><g transform='translate(28,28)'><circle cx='72' cy='72' r='70' fill='none' stroke='url(%23g)' stroke-width='12'/><rect x='58' y='10' width='28' height='124' rx='6' fill='url(%23g)'/><rect x='10' y='58' width='124' height='28' rx='6' fill='url(%23g)'/></g></svg>" alt="Logo" />
+          <span>Strzelnica Drugnia Academy Green Point</span>
+        </div>
+        <div class="tag">© <span id="year"></span> Strzelnica Drugnia Academy Green Point – wszystkie prawa zastrzezone</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(force){
+      const el = document.getElementById('mobileMenu');
+      const want = typeof force === 'boolean' ? force : el.style.display !== 'block';
+      el.style.display = want ? 'block' : 'none';
+    }
+    // aktywna zakladka
+    const links = Array.from(document.querySelectorAll('.menu a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const id = '#' + e.target.id;
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href')===id));
+        }
+      })
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    sections.forEach(s => obs.observe(s));
+
+    // rok w stopce
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
